@@ -1,0 +1,119 @@
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  box-sizing: border-box;
+}
+div.topside {
+  background-color: rgb(110, 255, 110);
+  display: flex;
+  height: 60px;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+div.logo {
+  display: flex;
+  width: 40%;
+  height: 60px;
+}
+div.userButton1 {
+  border-radius: 5px;
+  background-color: rgb(184, 253, 184);
+  margin-left: 10%;
+  margin-right: 10%;
+  width: 15%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  display: flex;
+}
+hr {
+  border-top: 1px solid rgb(115, 153, 138);
+  border-radius: 10000px;
+  max-width: 900px;
+  margin: auto;
+}
+div.botside {
+  display: block;
+  height: 800px;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+div.counterBox {
+  height: 450px;
+  width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+div.tasks {
+  height: 200px;
+  width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.settingSvg {
+  margin-top: 10px;
+  margin-right: 8px;
+  color: rgb(2, 107, 121);
+}
+.upsideMiniText {
+  margin-top: auto;
+  margin-bottom: auto;
+  font-family: "Supermercado One", cursive;
+  color: rgb(2, 107, 121);
+  font-size: 17px;
+}
+.logo {
+  width: 35px;
+  height: 35px;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+body {
+  background-color: rgb(110, 255, 110);
+}
+.pomodoroLogo {
+  width: 64px;
+  height: 64px;
+}
+.pomodoroText {
+  font-size: 26px;
+  position: relative;
+  bottom: 5px;
+  font-family: "Supermercado One", cursive;
+  color: rgb(2, 107, 121);
+}
+.counterBox {
+  background-color: rgb(184, 253, 184);
+  margin-top: 10px;
+  border-radius: 20px;
+  display: block;
+}
+.counter {
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 200px;
+  font-family: "Supermercado One", cursive;
+  color: rgb(0, 155, 155);
+  height: 50%;
+  width: fit-content;
+}
+.startButton {
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: "Supermercado One", cursive;
+  background-color: rgb(0, 155, 155);
+  height: 70px;
+  width: 240px;
+  border-radius: 5px;
+}
+.startText {
+  font-size: 40px;
+  margin: auto;
+  width: fit-content;
+  padding-top: 11.2px;
+  padding-bottom: 11.2px;
+}
