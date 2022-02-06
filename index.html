@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@1,300&family=Roboto:ital,wght@1,300;1,500&family=Rubik&family=Source+Sans+Pro&family=Supermercado+One&family=Varela+Round&display=swap" rel="stylesheet">  </head>
   <body>
-    <script src="js/script.js" defer></script>
+    <script src="js/controller.js" defer></script>
     <div class="topside" >
       <div class="userButton1">
         <img src="https://img.icons8.com/color/48/000000/settings--v2.png"/>
@@ -37,11 +37,22 @@
         <div class="counter">
           25:00
         </div>
-        <div class="startButton">
+        <button class="startButton">
           <div class="startText">Start</div>
-        </div>
+        </button>
       </div>
-      <div class="tasks"></div>  
+      <div class="tasks">
+        <div class="middleText" >&nbsp&nbspYAPILACAKLAR&nbsp&nbsp</div>
+        <hr/ class="middleTexthr">
+        <form class="addWork">
+          <input type="text" name="text" placeholder=" Aciklama" id="work" class="workInput"/>
+          <button class="plusButton">+</button>
+        </form>
+        <hr/ class="workhr">
+        <div class="workList"><div class="workText">Aciklama</div></div>
+      </div> 
+        
     </div>
+     
   </body>
 </html>

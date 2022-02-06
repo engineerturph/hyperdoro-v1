@@ -5,3 +5,4 @@
 //User stories
 //As a user i want a configurable pomodoro app,so that i can change anything as i want
 //svg iconset kullan
+//yapilanlari yapilacaklarin ustune switch buttonu ekle ve ordan bak
