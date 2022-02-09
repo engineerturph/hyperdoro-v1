@@ -29,7 +29,7 @@ div.userButton1 {
 }
 hr {
   border-top: 1px solid rgb(0, 0, 0);
-  border-radius: 10000px;
+  border-radius: 20px;
   max-width: 900px;
   margin: auto;
   width: 800px;
@@ -186,15 +186,23 @@ body {
 }
 .workList {
   width: 800px;
+  height: 38px;
   margin-left: auto;
   margin-right: auto;
-  height: 30px;
-  display: flex;
+  display: block;
 }
 .workText {
-  width: min-content;
-  height: 100%;
+  width: 90%;
+  margin-top: 2px;
+  color: rgb(0, 0, 0);
+  display: flex;
+}
+.emptyText {
   text-align: center;
-  color: gray;
-  margin-top: 6px;
+}
+.current {
+  background-color: rgb(255, 255, 255);
+}
+.addPomodoro {
+  margin-left: 700px;
 }
