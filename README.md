@@ -4,4 +4,4 @@ Only pomodoro-v1 version will be public and first version will be
 nothing more than a normal pomodoro application
 
 v0.1 finished first final html outline
-//take clock datas to model and implement stopping clock feature
+//take clock and startbutton.js to clockarea.js
