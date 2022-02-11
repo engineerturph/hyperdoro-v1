@@ -1,11 +1,19 @@
 class clock {
-  _parentElement = document.querySelector(".counter");
+  _parentElement = document.querySelector(".counterBox");
   _status = document.querySelector(".calisma");
+  _counter = document.querySelector(".counter");
   renderTime(time) {
-    this._parentElement.textContent = time;
+    this._counter.textContent = time;
   }
   renderStatus(status) {
     this._status.textContent = status;
+  }
+  startHandler(func) {
+    this._parentElement
+      .querySelector(".startButton")
+      .addEventListener("click", function () {
+        func();
+      });
   }
 }
 

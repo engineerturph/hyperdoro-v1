@@ -13,11 +13,11 @@ User stories =
 
 i want to be able to login website(use lots of login api) and use my early data
 
-i want to start pomodoro as i want
+i want to start pomodoro as i want ✔️
 
-i want to able to add and remove minutes from my pomodoro with one click
+i want to able to add ✔️ and remove minutes from my pomodoro with one click
 
-i want to be able to skip or delete pomodoro
+i want to be able to skip ✔️(buggy)or delete pomodoro
 
 i want to be able to see my statistics
 
@@ -29,11 +29,11 @@ i want different timer(real time) to see easily
 
 i want to learn what is pomodoro from website
 
-i want to create tasks
+i want to create tasks ✔️
 
-i want add pomodoros to tasks
+i want add pomodoros to tasks ✔️
 
-i want to choose current task
+i want to choose current task ✔️
 
 i want to mark tasks as completed as i want
 

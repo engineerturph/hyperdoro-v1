@@ -10,7 +10,7 @@ class work {
   returnInputValue() {
     return this._input.value;
   }
-  listenButton(func) {
+  listenInputButton(func) {
     this._button.addEventListener("click", function (e) {
       e.preventDefault();
       func();
@@ -20,11 +20,15 @@ class work {
     this._list.addEventListener(
       "mousedown",
       function (e) {
-        if (e.target.classList.contains("workhr")) return;
-        this.workTarget = e.target.classList.contains("work")
-          ? e.target
-          : e.target.parentElement;
-        func();
+        func(e);
+      }.bind(this)
+    );
+  }
+  listenAddPomodoro(func) {
+    this._list.addEventListener(
+      "mousedown",
+      function (e) {
+        func(e);
       }.bind(this)
     );
   }
