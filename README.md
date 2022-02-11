@@ -4,10 +4,13 @@ Only pomodoro-v1 version will be public and first version will be
 nothing more than a normal pomodoro application
 
 v0.1 finished first final html outline
+
 //take clock and startbutton.js to clockarea.js ve fazladan 20 dk calis
+
 //ilerde uygulamalaya calendar eklerken google api kullan
 
 User stories =
+
 i want to be able to login website(use lots of login api) and use my early data
 
 i want to start pomodoro as i want
