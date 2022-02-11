@@ -17,11 +17,11 @@ i want to start pomodoro as i want
 
 i want to able to add and remove minutes from my pomodoro with one click
 
-i want to be able to skip pomodoro
+i want to be able to skip or delete pomodoro
 
 i want to be able to see my statistics
 
-i want to be able to change languages
+i want to be able to change languages(not in flowchart use api later)
 
 i want to be able go to main site with logo
 
@@ -46,3 +46,5 @@ i want to be able to modify tasks' name pomodoro number after creation
 i want to clear or complete all pomodoros with one click
 
 i want to be able to modify pomodoro time,short timeout length,long timeout length,long timeout delay as pomodoro(gecikme),pomodoro auto start,if to do is empty dont start next pomodoro, oto timeout start,daily goal(default value at daily goal and indicator for people to see they can modify this)/notification voice volume,alarm voice,opening desktop notifications,opening explorer notifications,close real time timer/changing theme,changing language,changing time period,time display(2:00PM and 14:00),dont remove task from todo when done
+
+i want to be able to report bugs and features for implement
