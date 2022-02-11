@@ -186,14 +186,14 @@ body {
 }
 .workList {
   width: 800px;
-  height: 38px;
+  height: min-content;
   margin-left: auto;
   margin-right: auto;
   display: block;
 }
 .workText {
-  width: 90%;
-  margin-top: 2px;
+  width: min-content;
+  margin-top: 16px;
   color: rgb(0, 0, 0);
   display: flex;
 }
@@ -205,4 +205,10 @@ body {
 }
 .addPomodoro {
   margin-left: 700px;
+  height: 50%;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+.work {
+  display: flex;
 }

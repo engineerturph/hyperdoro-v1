@@ -11,6 +11,7 @@ export const state = {
   workData: {
     inputWork: {},
     works: [],
+    currentWork: {},
   },
 };
 export const calculateTime = function (timeText) {
@@ -25,8 +26,18 @@ export const translateTime = function (time) {
   return times.join(":");
 };
 export const addWork = function (work) {
-  if (work === "") {
-    work = "Task";
-  }
-  state.workData.works.push(work);
+  state.workData.works.unshift(work);
+};
+export const createValue = function (value) {
+  return {
+    value: value,
+    continue: false,
+    repeat: 1,
+  };
+};
+export const makeWorkContinue = function (i = 0) {
+  state.workData.works.forEach((a) => {
+    a.continue = false;
+  });
+  state.workData.works[i].continue = true;
 };

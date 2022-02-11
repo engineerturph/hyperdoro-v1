@@ -67,14 +67,22 @@ const controlClock = function () {
   }
 };
 const controladdWork = function () {
-  model.state.workData.inputWork = work.getValue(work.input);
+  model.state.workData.inputWork = model.createValue(work.returnInputValue());
   model.addWork(model.state.workData.inputWork);
-  console.log(model.state.workData.works);
-  const markup = work.generateList(model.state.workData.works);
-  work.renderList(markup);
+  model.makeWorkContinue();
+  //default olarak ilk olusturulan worku calistirior
+  work.renderToList(model.state.workData.works);
+};
+const controlWork = function () {
+  const i = work.workTarget.dataset.id;
+  model.makeWorkContinue(i);
+  work.renderToList(model.state.workData.works);
 };
 const init = function () {
   startButton.startHandler(controlClock);
   work.listenButton(controladdWork);
+  work.listenWorkList(controlWork);
 };
 init();
+
+//pomodoro sirasinda site boyle kaysin : https://www.youtube.com/watch?v=qxUVTDuF9xk
