@@ -32,9 +32,8 @@ class work {
       }.bind(this)
     );
   }
-  _generateMarkup(data) {
-    this._data = data;
-    return data
+  _generateMarkup() {
+    return this._data
       .map(
         (a, i) =>
           `<div class="work ${
@@ -48,8 +47,9 @@ class work {
       .join("");
   }
   renderToList(data) {
+    this._data = data;
     this._list.innerHTML = "";
-    this._list.insertAdjacentHTML("afterbegin", this._generateMarkup(data));
+    this._list.insertAdjacentHTML("afterbegin", this._generateMarkup());
   }
 }
 

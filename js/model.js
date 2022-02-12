@@ -1,11 +1,9 @@
 export const state = {
   counterData: {
-    startTime: 1500,
-    time: 1500,
-    timeText: "",
+    time: 0,
     timer: "",
     type: "work",
-    started: false,
+    firststart: false,
     status: "stop",
     pomodoroStatus: "",
   },
@@ -36,7 +34,7 @@ export const createValue = function (value) {
     repeat: 1,
   };
 };
-export const makeWorkContinue = function (i = 0) {
+export const makeInputWorkContinue = function (i = 0) {
   state.workData.works.forEach((a) => {
     a.continue = false;
   });
@@ -45,4 +43,11 @@ export const makeWorkContinue = function (i = 0) {
 };
 export const addPomodoro = function (i) {
   state.workData.works[i].repeat++;
+};
+export const defTime = function (time, status = "work") {
+  state.counterData.time = time;
+  state.counterData.type = status;
+};
+export const minusCurrentWork = function () {
+  state.workData.works[state.workData.currentWorkNum].repeat--;
 };
