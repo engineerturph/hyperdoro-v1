@@ -50,3 +50,5 @@ i want to be able to modify pomodoro time,short timeout length,long timeout leng
 i want to be able to report bugs and features for implement
 
 //Take pomodoro datas at the end of pomodoro
+//modeldeki importu ayarla
+//work ekleyip zamani baslatinca siliniyor bugi duzelt

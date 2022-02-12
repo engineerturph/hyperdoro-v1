@@ -5,7 +5,7 @@ import clock from "./View/clock.js";
 import * as model from "./model.js";
 import work from "./View/work.js";
 import clockButtons from "./View/clockButtons.js";
-import { SEC_TIMEOUT, SEC_WORK } from "./config.js";
+import { SEC_TIMEOUT, SEC_WORK, TIMESPEED } from "./config.js";
 //body uzunlugu 900 genisligi 1663 4x3 bi uygulama yapcam genisligi 1200
 //ilk htmlyi yaz sonradan designi ekle
 //User stories
@@ -24,6 +24,12 @@ import { SEC_TIMEOUT, SEC_WORK } from "./config.js";
 
 //Kodu guzel yaziom,cok kodu bir araya getirip function olarak kullan
 //ve yorum ekleyerek kodu yaz
+
+/////
+/////
+/////
+/////
+/////
 const renderClockandStatus = function () {
   //Translates time to min:sec and renders it
   clock.renderTime(model.translateTime(model.state.counterData.time));
@@ -36,34 +42,82 @@ const timeMoves = function () {
   renderClockandStatus();
 };
 
+//Updates work number at the end of pomodoro and deletes work at 0
+const updateWorkPomodoro = function () {
+  const currentWorkNum = model.state.workData.currentWorkNum;
+  if (currentWorkNum === -1) return;
+  model.minusCurrentWork();
+  work.renderToList(model.state.workData.works);
+
+  //Checks if currentwork is at zero and deletes at zero
+  if (model.state.workData.works[currentWorkNum].repeat != 0) {
+    return;
+  }
+  model.state.workData.works.splice(currentWorkNum, 1);
+  console.log(model.state.workData.works);
+
+  //If works is empty it makes currentWork -1 and if it is not makes first work continue
+  if (model.state.workData.works.length === 0) {
+    model.state.workData.currentWorkNum = -1;
+  } else {
+    model.makeInputWorkContinue(0);
+  }
+
+  //If the works array is empty rendertolist automaticly renders ''
+  work.renderToList(model.state.workData.works);
+  return;
+};
+
 //After end of pomodoro this func changes work pomodoro to timeout
 //and checks every second
-const changePomodoroStatus = function () {
-  if (
-    model.state.counterData.time === 0 &&
-    model.state.counterData.type === "work"
-  ) {
-    model.defTime(SEC_TIMEOUT, "timeout");
-    clock.renderStatus("timeout");
-    if (model.state.workData.currentWorkNum === -1) return;
-    model.minusCurrentWork();
-    work.renderToList(model.state.workData.works);
+//When u want to skip pomodoro not at 0 u use autoskip
+const changePomodoroStatus = function (autoskip = false) {
+  if (autoskip === false) {
+    if (
+      model.state.counterData.time === 0 &&
+      model.state.counterData.type === "work"
+    ) {
+      model.defTime(SEC_TIMEOUT, "timeout");
+      clock.renderStatus("timeout");
+    } else if (
+      model.state.counterData.time === 0 &&
+      model.state.counterData.type === "timeout"
+    ) {
+      model.defTime(SEC_WORK);
+      clock.renderStatus("work");
+    }
   }
-  if (
-    model.state.counterData.time === 0 &&
-    model.state.counterData.type === "timeout"
-  ) {
-    model.defTime(SEC_WORK);
-    clock.renderStatus("work");
+  if (autoskip === true) {
+    if (model.state.counterData.type === "work") {
+      //Defines time and worktype and renders time and worktype
+      model.defTime(SEC_TIMEOUT, "timeout");
+    } else if (model.state.counterData.type === "timeout") {
+      //Defines time and worktype and renders time and worktype
+      model.defTime(SEC_WORK);
+    }
   }
 };
 
+//Checks remaining time for remaining time calculations
+const checkremainingTime = function () {
+  if (model.state.workData.currentWorkNum === -1) return;
+  model.updateCurrentRemaining();
+  work.renderToList(model.state.workData.works);
+};
 //Creates time intervals
 const resumeWork = function () {
-  model.state.counterData.timer = setInterval(timeMoves, 10);
+  model.state.counterData.timer = setInterval(timeMoves, TIMESPEED);
   model.state.counterData.pomodoroStatus = setInterval(
     changePomodoroStatus,
-    10
+    TIMESPEED
+  );
+  model.state.counterData.workPomodoroStatus = setInterval(
+    updateWorkPomodoro,
+    TIMESPEED
+  );
+  model.state.counterData.checkRemaining = setInterval(
+    checkremainingTime,
+    TIMESPEED * 5
   );
 };
 
@@ -71,6 +125,8 @@ const resumeWork = function () {
 const stopWork = function () {
   clearInterval(model.state.counterData.timer);
   clearInterval(model.state.counterData.pomodoroStatus);
+  clearInterval(model.state.counterData.workPomodoroStatus);
+  clearInterval(model.state.counterData.checkRemaining);
 };
 const controlClock = function () {
   //starts if time is stopped
@@ -140,23 +196,11 @@ const controlPomodoroNumber = function (e) {
 };
 const controlNext = function () {
   if (model.state.counterData.type === "work") {
-    //Defines time and worktype and renders time and worktype
-    model.defTime(SEC_TIMEOUT, "timeout");
-    renderClockandStatus();
-    if (model.state.workData.currentWorkNum === -1) {
-      return;
-    }
-
-    //If there is currentWork it minuses its number and re-renders it
-    model.minusCurrentWork();
-    work.renderToList(model.state.workData.works);
-    return;
+    updateWorkPomodoro();
   }
-  if (model.state.counterData.type === "timeout") {
-    //Defines time and worktype and renders time and worktype
-    model.defTime(SEC_WORK);
-    renderClockandStatus();
-  }
+  changePomodoroStatus(true);
+  renderClockandStatus();
+  return;
 };
 const controlPlus = function () {
   //Adds time a minute

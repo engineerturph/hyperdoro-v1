@@ -1,16 +1,20 @@
+// import { SEC_WORK } from "./config";//ilerde importu ayarla
+
 export const state = {
   counterData: {
-    time: 0,
+    time: 300,
     timer: "",
     type: "work",
     firststart: false,
     status: "stop",
     pomodoroStatus: "",
+    workPomodoroStatus: "",
   },
   workData: {
     inputWork: {},
     works: [],
     currentWorkNum: -1,
+    remaining: 0,
   },
 };
 export const calculateTime = function (timeText) {
@@ -32,6 +36,7 @@ export const createValue = function (value) {
     value: value,
     continue: false,
     repeat: 1,
+    remaining: 25,
   };
 };
 export const makeInputWorkContinue = function (i = 0) {
@@ -50,4 +55,9 @@ export const defTime = function (time, status = "work") {
 };
 export const minusCurrentWork = function () {
   state.workData.works[state.workData.currentWorkNum].repeat--;
+};
+export const updateCurrentRemaining = function () {
+  state.workData.works[state.workData.currentWorkNum].remaining = Math.floor(
+    state.counterData.time / 60
+  );
 };

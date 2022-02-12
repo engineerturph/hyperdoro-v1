@@ -204,11 +204,18 @@ body {
   background-color: rgb(255, 255, 255);
 }
 .addPomodoro {
-  margin-left: 700px;
+  margin-left: 600px;
   height: 50%;
   margin-top: auto;
   margin-bottom: auto;
 }
 .work {
   display: flex;
+}
+.remaining {
+  width: min-content;
+  margin-left: 70px;
+  height: 50%;
+  margin-top: auto;
+  margin-bottom: auto;
 }

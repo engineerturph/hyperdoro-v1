@@ -42,13 +42,16 @@ class work {
             a.value === "" ? "No explanation" : a.value
           }</div><button class="addPomodoro">${
             a.repeat
-          }<button/></div><hr class="workhr"/>`
+          }</button><div class='remaining'>${
+            a.remaining
+          } mins</div></div><hr class="workhr"/>`
       )
       .join("");
   }
   renderToList(data) {
     this._data = data;
     this._list.innerHTML = "";
+    if (data === []) return;
     this._list.insertAdjacentHTML("afterbegin", this._generateMarkup());
   }
 }
