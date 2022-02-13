@@ -43,7 +43,7 @@ class work {
           }</div><button class="addPomodoro">${
             a.repeat
           }</button><div class='remaining'>${
-            a.remaining
+            +a.curRemaining + a.othRemaining
           } mins</div></div><hr class="workhr"/>`
       )
       .join("");
