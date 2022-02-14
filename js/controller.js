@@ -30,10 +30,7 @@ import { SEC_TIMEOUT, SEC_WORK, TIMESPEED } from "./config.js";
 /////
 /////
 /////
-//Checks remaining time for remaining time calculations
-const addDragListener = function () {
-  work.listenDragWork();
-};
+//Checks current pomodoros remaining time for remaining time calculations
 const checkAndRenderRemainingTimes = function (reset = false) {
   if (model.state.counterData.type != "work") return;
   if (model.state.workData.currentWorkNum === -1) return;
@@ -41,7 +38,7 @@ const checkAndRenderRemainingTimes = function (reset = false) {
   work.renderToList(model.state.workData.works);
 };
 
-//Updates and renders remaining works
+//Updates and renders remaining works time calculations
 const updateandRenderWorkRemaining = function () {
   model.updateOtherRemainings();
   work.renderToList(model.state.workData.works);
@@ -87,6 +84,7 @@ const updateWorkPomodoro = function () {
 //After end of pomodoro this func changes work pomodoro to timeout
 //and checks every second
 //When u want to skip pomodoro not at 0 u use autoskip
+//Also updates remainings
 const changePomodoroStatus = function (autoskip = false) {
   if (autoskip === false) {
     if (
@@ -239,6 +237,66 @@ const controlPlus = function () {
   //Re-calculates remaining times
   checkAndRenderRemainingTimes();
 };
+
+//Marks dragging element for later usage
+const addWorkDraggingClass = function (target) {
+  target.classList.toggle("dragging");
+};
+
+//
+const addWorkDraggingClass2 = function (target) {
+  target.classList.toggle("dragging");
+  if (model.state.workData.afterElement.element) {
+    model.swapwork(
+      model.state.workData.dragging.dataset.id,
+      model.state.workData.afterElement.element.dataset.id - 1
+    );
+  } else {
+    model.swapwork(
+      model.state.workData.dragging.dataset.id,
+      model.state.workData.works.length - 1
+    );
+  }
+  work.renderToList(model.state.workData.works);
+};
+//Gets element after the element we dragging
+const getDragAfterElement = function (list, y) {
+  const nonDraggingElements = [
+    ...list.querySelectorAll(".work:not(.dragging)"),
+  ];
+
+  //Compares every elements center y coordinates difference from our elements y point
+  //and returns closest element down(if our element is at bottom returns undefined)
+  return nonDraggingElements.reduce(
+    (closest, child) => {
+      const box = child.getBoundingClientRect();
+      const offset = y - box.top - box.height / 2; //Takes difference from our y point and elements center point
+      if (offset < 0 && offset > closest.offset) {
+        return { offset: offset, element: child };
+      } else return closest;
+    },
+    { offset: Number.NEGATIVE_INFINITY }
+  ); //Its infinite because when y is up from any element offset comes
+  //as a negative value and closest offset is the biggest negative value of all elements);
+};
+const controlDragging = function (e) {
+  e.preventDefault();
+
+  //Datalari modela kaydediyor ki ilerde kullanalalim ve workleri burada swaplarsak durmadan swapliyor o yuzden sikinti oluyor.
+  model.state.workData.dragging = document.querySelector(".dragging");
+  model.state.workData.afterElement = getDragAfterElement(work.list, e.clientY);
+  console.log(model.state.workData.afterElement.element);
+  if (model.state.workData.afterElement.element) {
+    //swaps works at model
+    work.list.insertBefore(
+      model.state.workData.dragging,
+      model.state.workData.afterElement.element
+    ); //swaps works at display
+  } else {
+    work.list.insertAdjacentElement("beforeend", model.state.workData.dragging); //takes work at last place in display
+    //takes work at last place in model
+  }
+};
 const init = function () {
   model.defTime(SEC_WORK);
   clock.startHandler(controlClock);
@@ -247,7 +305,11 @@ const init = function () {
   work.listenAddPomodoro(controlPomodoroNumber);
   clockButtons.listenNext(controlNext);
   clockButtons.listenPlus(controlPlus);
-  work.listenDragWork();
+  work.listenDragWork(
+    addWorkDraggingClass,
+    controlDragging,
+    addWorkDraggingClass2
+  );
 };
 init();
 

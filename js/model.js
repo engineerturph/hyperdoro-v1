@@ -87,3 +87,9 @@ export const resetCurrentRemaining = function () {
     SEC_WORK / 60
   );
 };
+export const swapwork = function (x, y) {
+  //x takes y place and pushes all down
+  let b = state.workData.works[x];
+  state.workData.works.splice(x, 1);
+  state.workData.works.splice(y, 0, b);
+};

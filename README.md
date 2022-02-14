@@ -48,5 +48,6 @@ i want to be able to modify pomodoro time,short timeout length,long timeout leng
 i want to be able to report bugs and features for implement
 
 //Take pomodoro datas at the end of pomodoro
-//modeldeki importu ayarla
-//work ekleyip zamani baslatinca siliniyor bugi duzelt
+//Work suresini hesaplama mekanizmasi cok kotu onu yarin duzelt ve toplam sureyi ekle
+//Yer degistirmede hersey ok ama modeldaki datadaki yer degistirme sikintili onlari duzelt
+//Modele elementleri kaydetmek yerine function sonunda siralamalarini kaydet ve onlari drag bitisinde kullan

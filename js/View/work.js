@@ -1,7 +1,7 @@
 class work {
   _parentElement = document.querySelector(".tasks");
   _input = this._parentElement.querySelector(".workInput");
-  _list = this._parentElement.querySelector(".workList");
+  list = this._parentElement.querySelector(".workList");
   _button = this._parentElement.querySelector(".plusButton");
   _work;
   _data;
@@ -17,7 +17,7 @@ class work {
     });
   }
   listenWorkList(func) {
-    this._list.addEventListener(
+    this.list.addEventListener(
       "mousedown",
       function (e) {
         func(e);
@@ -25,19 +25,28 @@ class work {
     );
   }
   listenAddPomodoro(func) {
-    this._list.addEventListener(
+    this.list.addEventListener(
       "mousedown",
       function (e) {
         func(e);
       }.bind(this)
     );
   }
-  listenDragWork() {
-    this._list.addEventListener("dragstart", function () {
-      console.log("a");
+  listenDragWork(func1, func2, func3) {
+    this.list.addEventListener("dragstart", function (e) {
+      const target = e.target.classList.contains("work")
+        ? e.target
+        : e.target.parentElement;
+      func1(target);
     });
-    this._list.addEventListener("dragend", function () {
-      console.log("b");
+    this.list.addEventListener("dragend", function (e) {
+      const target = e.target.classList.contains("work")
+        ? e.target
+        : e.target.parentElement;
+      func3(target);
+    });
+    this.list.addEventListener("dragover", function (e) {
+      func2(e);
     });
   }
   _generateMarkup() {
@@ -58,9 +67,9 @@ class work {
   }
   renderToList(data) {
     this._data = data;
-    this._list.innerHTML = "";
+    this.list.innerHTML = "";
     if (data === []) return;
-    this._list.insertAdjacentHTML("afterbegin", this._generateMarkup());
+    this.list.insertAdjacentHTML("afterbegin", this._generateMarkup());
   }
 }
 
