@@ -31,7 +31,9 @@ import { SEC_TIMEOUT, SEC_WORK, TIMESPEED } from "./config.js";
 /////
 /////
 //Checks remaining time for remaining time calculations
-
+const addDragListener = function () {
+  work.listenDragWork();
+};
 const checkAndRenderRemainingTimes = function (reset = false) {
   if (model.state.counterData.type != "work") return;
   if (model.state.workData.currentWorkNum === -1) return;
@@ -245,7 +247,9 @@ const init = function () {
   work.listenAddPomodoro(controlPomodoroNumber);
   clockButtons.listenNext(controlNext);
   clockButtons.listenPlus(controlPlus);
+  work.listenDragWork();
 };
 init();
 
 //pomodoro sirasinda site boyle kaysin : https://www.youtube.com/watch?v=qxUVTDuF9xk
+//Eventlisteneri en basta eklemek lazim yoksa eklenmiyor.

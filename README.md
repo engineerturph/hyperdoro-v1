@@ -35,8 +35,6 @@ i want add pomodoros to tasks ✔️
 
 i want to choose current task ✔️
 
-i want to mark tasks as completed as i want
-
 i want to sort tasks with my mouse
 
 i want app to calculate my daily and task pomodoros,i want to see when my all pomodoros end and my task pomodoros end

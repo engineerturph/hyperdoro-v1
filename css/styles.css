@@ -211,6 +211,7 @@ body {
 }
 .work {
   display: flex;
+  cursor: move;
 }
 .remaining {
   width: min-content;

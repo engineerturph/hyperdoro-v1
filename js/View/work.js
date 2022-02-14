@@ -32,11 +32,19 @@ class work {
       }.bind(this)
     );
   }
+  listenDragWork() {
+    this._list.addEventListener("dragstart", function () {
+      console.log("a");
+    });
+    this._list.addEventListener("dragend", function () {
+      console.log("b");
+    });
+  }
   _generateMarkup() {
     return this._data
       .map(
         (a, i) =>
-          `<div class="work ${
+          `<div draggable="true" class="work ${
             a.continue ? "current" : ""
           }" data-id=${i}><div class="workText">${
             a.value === "" ? "No explanation" : a.value
