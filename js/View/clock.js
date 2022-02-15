@@ -15,6 +15,14 @@ class clock {
         func();
       });
   }
+  toggleStart() {
+    const button = this._parentElement.querySelector(".startText");
+    if (button.innerHTML === "Start") {
+      button.innerHTML = "Stop";
+    } else {
+      button.innerHTML = "Start";
+    }
+  }
 }
 
 export default new clock(); //bu tanimlamiyor sadece exportluyor

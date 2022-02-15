@@ -3,6 +3,7 @@ class work {
   _input = this.parentElement.querySelector(".workInput");
   list = this.parentElement.querySelector(".workList");
   _button = this.parentElement.querySelector(".plusButton");
+  _settings = this.parentElement.querySelector(".settings");
   _work;
   _data;
   workTarget;
@@ -17,20 +18,19 @@ class work {
     });
   }
   listenWorkList(func) {
-    this.list.addEventListener(
-      "mousedown",
-      function (e) {
-        func(e);
-      }.bind(this)
-    );
+    this.list.addEventListener("mousedown", function (e) {
+      func(e);
+    });
   }
   listenAddPomodoro(func) {
-    this.list.addEventListener(
-      "mousedown",
-      function (e) {
-        func(e);
-      }.bind(this)
-    );
+    this.list.addEventListener("mousedown", function (e) {
+      func(e);
+    });
+  }
+  listenSettings(func) {
+    this.list.addEventListener("click", function (e) {
+      func(e);
+    });
   }
   listenDragWork(func1, func2, func3) {
     this.list.addEventListener("dragstart", function (e) {
@@ -61,7 +61,7 @@ class work {
             a.repeat
           }</button><div class='remaining'>${
             +a.curRemaining + a.othRemaining
-          } mins</div></div><hr class="workhr"/>`
+          } mins</div><div class="settings">...</div></div><hr class="workhr"/>`
       )
       .join("");
   }

@@ -12,13 +12,13 @@ v0.2 added lots of features
 
 User stories =
 
-i want to be able to login website(use lots of login api) and use my early data 
+i want to be able to login website(use lots of login api) and use my early data
 
 i want to start pomodoro as i want ✔️
 
 i want to able to add ✔️ and remove minutes from my pomodoro with one click
 
-i want to be able to skip ✔️or delete pomodoro
+i want to be able to skip pomodoro ✔️
 
 i want to be able to see my statistics
 
@@ -42,12 +42,16 @@ i want app to calculate my daily and task pomodoros,i want to see when my all po
 
 i want to be able to modify tasks' name pomodoro number after creation
 
-i want to clear or complete all pomodoros with one click 
+i want to clear or complete all pomodoros with one click
 
 i want to be able to modify pomodoro time,short timeout length,long timeout length,long timeout delay as pomodoro(gecikme),pomodoro auto start,if to do is empty dont start next pomodoro, oto timeout start,daily goal(default value at daily goal and indicator for people to see they can modify this)/notification voice volume,alarm voice,opening desktop notifications,opening explorer notifications,close real time timer/changing theme,changing language,changing time period,time display(2:00PM and 14:00),dont remove task from todo when done
 
 i want to be able to report bugs and features for implement
 
+#Personal notes
+
 //Take pomodoro datas at the end of pomodoro
 //Work suresini hesaplama mekanizmasi cok kotu onu yarin duzelt ve toplam sureyi ekle
 //ilerde donelistle todolisti beraber visible yapan bir setting ekle
+//Ilerde ayarlara workun hepsini silmeyi ve hepsini skiplemeyi (mark as completed) ekle
+//Ilerde jobu deletelemek yerine sadece otomatik timeouta gecme butonu ekle.

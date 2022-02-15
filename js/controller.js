@@ -152,10 +152,11 @@ const controlClock = function () {
   if (model.state.counterData.status === "stop") {
     resumeWork();
     model.state.counterData.status = "resume";
-
+    clock.toggleStart();
     //stops if time is moving
   } else {
     stopWork();
+    clock.toggleStart();
     model.state.counterData.status = "stop";
   }
 };
@@ -296,7 +297,6 @@ const controlDragging = function (e) {
   //Datalari modela kaydediyor ki ilerde kullanalalim ve workleri burada swaplarsak durmadan swapliyor o yuzden sikinti oluyor.
   const dragging = document.querySelector(".dragging");
   const afterElement = getDragAfterElement(work.list, e.clientY);
-  console.log(afterElement.element);
   if (afterElement.element) {
     model.state.workData.dragNum = dragging.dataset.id;
     model.state.workData.afterNum = afterElement.element.dataset.id;
@@ -308,10 +308,13 @@ const controlDragging = function (e) {
     work.list.insertAdjacentElement("beforeend", dragging); //takes work at last place in display
   }
 };
+
+//Hides ToDoList and shows DoneList
 const controlSwitchList = function () {
   switcher.target.classList.toggle("hidden");
   work.parentElement.classList.toggle("hidden");
 };
+
 const init = function () {
   model.defTime(SEC_WORK);
   clock.startHandler(controlClock);
@@ -326,6 +329,7 @@ const init = function () {
     addWorkDraggingClass2
   );
   switcher.listenSwitcher(controlSwitchList);
+  work.listenSettings(controlSettings);
 };
 init();
 
