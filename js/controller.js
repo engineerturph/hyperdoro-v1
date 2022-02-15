@@ -246,14 +246,17 @@ const addWorkDraggingClass = function (target) {
 //
 const addWorkDraggingClass2 = function (target) {
   target.classList.toggle("dragging");
-  if (model.state.workData.afterElement.element) {
-    model.swapwork(
-      model.state.workData.dragging.dataset.id,
-      model.state.workData.afterElement.element.dataset.id - 1
-    );
+  if (model.state.workData.afterEl) {
+    const num1 = model.state.workData.dragNum;
+    const num2 = model.state.workData.afterNum;
+    if (num1 > num2) {
+      model.swapwork(num1, num2);
+    } else {
+      model.swapwork(num1, num2 - 1);
+    }
   } else {
     model.swapwork(
-      model.state.workData.dragging.dataset.id,
+      model.state.workData.dragNum,
       model.state.workData.works.length - 1
     );
   }
@@ -283,18 +286,18 @@ const controlDragging = function (e) {
   e.preventDefault();
 
   //Datalari modela kaydediyor ki ilerde kullanalalim ve workleri burada swaplarsak durmadan swapliyor o yuzden sikinti oluyor.
-  model.state.workData.dragging = document.querySelector(".dragging");
-  model.state.workData.afterElement = getDragAfterElement(work.list, e.clientY);
-  console.log(model.state.workData.afterElement.element);
-  if (model.state.workData.afterElement.element) {
-    //swaps works at model
-    work.list.insertBefore(
-      model.state.workData.dragging,
-      model.state.workData.afterElement.element
-    ); //swaps works at display
+  const dragging = document.querySelector(".dragging");
+  const afterElement = getDragAfterElement(work.list, e.clientY);
+  console.log(afterElement.element);
+  if (afterElement.element) {
+    model.state.workData.dragNum = dragging.dataset.id;
+    model.state.workData.afterNum = afterElement.element.dataset.id;
+    model.state.workData.afterEl = true;
+    work.list.insertBefore(dragging, afterElement.element); //swaps works at display
   } else {
-    work.list.insertAdjacentElement("beforeend", model.state.workData.dragging); //takes work at last place in display
-    //takes work at last place in model
+    model.state.workData.dragNum = dragging.dataset.id;
+    model.state.workData.afterEl = false;
+    work.list.insertAdjacentElement("beforeend", dragging); //takes work at last place in display
   }
 };
 const init = function () {
