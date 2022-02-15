@@ -1,8 +1,8 @@
 class work {
-  _parentElement = document.querySelector(".tasks");
-  _input = this._parentElement.querySelector(".workInput");
-  list = this._parentElement.querySelector(".workList");
-  _button = this._parentElement.querySelector(".plusButton");
+  parentElement = document.querySelector(".tasks");
+  _input = this.parentElement.querySelector(".workInput");
+  list = this.parentElement.querySelector(".workList");
+  _button = this.parentElement.querySelector(".plusButton");
   _work;
   _data;
   workTarget;

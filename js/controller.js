@@ -6,6 +6,8 @@ import * as model from "./model.js";
 import work from "./View/work.js";
 import clockButtons from "./View/clockButtons.js";
 import { SEC_TIMEOUT, SEC_WORK, TIMESPEED } from "./config.js";
+import switcher from "./View/switchbutton.js";
+import donelist from "./View/donelist.js";
 //body uzunlugu 900 genisligi 1663 4x3 bi uygulama yapcam genisligi 1200
 //ilk htmlyi yaz sonradan designi ekle
 //User stories
@@ -55,6 +57,7 @@ const renderClockandStatus = function () {
 const timeMoves = function () {
   model.state.counterData.time--;
   renderClockandStatus();
+  model.state.workData.spentTime++;
 };
 
 //Updates work number at the end of pomodoro and deletes work at 0
@@ -92,8 +95,9 @@ const changePomodoroStatus = function (autoskip = false) {
       model.state.counterData.type === "work"
     ) {
       model.defTime(SEC_TIMEOUT, "timeout");
-
       updateWorkPomodoro();
+      model.createDoneWork();
+      donelist.render(model.state.workData.donePomodoros);
       if (model.state.workData.currentWorkNum === -1) return; //if there is no work after all reaches 0 dont cast work functions
       //Resets current remaining to start of time because time is 0 and we are at new pomodoro
       model.resetCurrentRemaining();
@@ -103,6 +107,7 @@ const changePomodoroStatus = function (autoskip = false) {
       model.state.counterData.type === "timeout"
     ) {
       model.defTime(SEC_WORK);
+      model.state.workData.spentTime = 0;
     }
   }
   if (autoskip === true) {
@@ -110,12 +115,15 @@ const changePomodoroStatus = function (autoskip = false) {
       //Defines time and worktype and renders time and worktype
       model.defTime(SEC_TIMEOUT, "timeout");
       updateWorkPomodoro();
+      model.createDoneWork();
+      donelist.render(model.state.workData.donePomodoros);
       if (model.state.workData.currentWorkNum === -1) return; //if there is no work after all reaches 0 dont cast work functions
       model.resetCurrentRemaining();
       updateandRenderWorkRemaining();
     } else if (model.state.counterData.type === "timeout") {
       //Defines time and worktype and renders time and worktype
       model.defTime(SEC_WORK);
+      model.state.workData.spentTime = 0;
     }
   }
 };
@@ -300,6 +308,10 @@ const controlDragging = function (e) {
     work.list.insertAdjacentElement("beforeend", dragging); //takes work at last place in display
   }
 };
+const controlSwitchList = function () {
+  switcher.target.classList.toggle("hidden");
+  work.parentElement.classList.toggle("hidden");
+};
 const init = function () {
   model.defTime(SEC_WORK);
   clock.startHandler(controlClock);
@@ -313,6 +325,7 @@ const init = function () {
     controlDragging,
     addWorkDraggingClass2
   );
+  switcher.listenSwitcher(controlSwitchList);
 };
 init();
 

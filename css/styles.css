@@ -192,7 +192,7 @@ body {
   display: block;
 }
 .workText {
-  width: min-content;
+  width: max-content;
   margin-top: 16px;
   color: rgb(0, 0, 0);
   display: flex;
@@ -219,4 +219,37 @@ body {
   height: 50%;
   margin-top: auto;
   margin-bottom: auto;
+}
+.hidden {
+  opacity: 0;
+  display: none;
+}
+.switch {
+  margin-left: auto;
+  margin-right: auto;
+  width: max-content;
+}
+.doneList {
+  width: 800px;
+  height: min-content;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+.finishedBox {
+  margin-top: 20px;
+  width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: rgb(184, 253, 184);
+  border-radius: 10px;
+}
+.done {
+  display: flex;
+}
+.doneText {
+  width: max-content;
+  margin-top: 16px;
+  color: rgb(0, 0, 0);
+  display: flex;
 }

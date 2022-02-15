@@ -13,7 +13,9 @@ export const state = {
   workData: {
     inputWork: {},
     works: [],
+    donePomodoros: [],
     currentWorkNum: -1,
+    spentTime: 0,
   },
 };
 
@@ -92,4 +94,20 @@ export const swapwork = function (x, y) {
   let b = state.workData.works[x];
   state.workData.works.splice(x, 1);
   state.workData.works.splice(y, 0, b);
+};
+export const createDoneWork = function () {
+  const curWork = state.workData.works.find((e) => e.continue === true);
+  const newDone = {
+    timeSpend:
+      Math.floor(state.workData.spentTime / 60) === 0
+        ? 1
+        : Math.floor(state.workData.spentTime / 60),
+  };
+  if (curWork?.value != null) {
+    newDone.value = curWork.value === "" ? "No explanation" : curWork.value;
+  } else {
+    newDone.value = "No work in queue";
+  }
+  state.workData.donePomodoros.unshift(newDone);
+  console.log(state.workData.donePomodoros);
 };
