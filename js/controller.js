@@ -180,8 +180,11 @@ const controlCurrent = function (e) {
   //If you click workhr element or hr(border line) element it returns
   //It listens all of workList
   if (
-    e.target.classList.contains("workhr") ||
-    e.target.classList.contains("addPomodoro")
+    !(
+      e.target.classList.contains("workText") ||
+      e.target.classList.contains("work") ||
+      e.target.classList.contains("remaining")
+    )
   )
     return;
 
@@ -254,7 +257,10 @@ const addWorkDraggingClass = function (target) {
 
 //
 const addWorkDraggingClass2 = function (target) {
+  //Removes dragging after dragging
   target.classList.toggle("dragging");
+
+  //Swaps elements at model(Takes our element at a position and takes all bottom elements one down)
   if (model.state.workData.afterEl) {
     const num1 = model.state.workData.dragNum;
     const num2 = model.state.workData.afterNum;
@@ -294,17 +300,24 @@ const getDragAfterElement = function (list, y) {
 const controlDragging = function (e) {
   e.preventDefault();
 
-  //Datalari modela kaydediyor ki ilerde kullanalalim ve workleri burada swaplarsak durmadan swapliyor o yuzden sikinti oluyor.
   const dragging = document.querySelector(".dragging");
   const afterElement = getDragAfterElement(work.list, e.clientY);
+
+  //If there is no element after our element it places our element last place
   if (afterElement.element) {
+    //Takes dragging,afterelement and existing data of after element for after usage
     model.state.workData.dragNum = dragging.dataset.id;
     model.state.workData.afterNum = afterElement.element.dataset.id;
     model.state.workData.afterEl = true;
+
+    //Inserts element in UI
     work.list.insertBefore(dragging, afterElement.element); //swaps works at display
   } else {
+    ////Takes dragging,afterelement and existing data of after element for after usage
     model.state.workData.dragNum = dragging.dataset.id;
     model.state.workData.afterEl = false;
+
+    ////Inserts element in UI
     work.list.insertAdjacentElement("beforeend", dragging); //takes work at last place in display
   }
 };
@@ -315,12 +328,22 @@ const controlSwitchList = function () {
   work.parentElement.classList.toggle("hidden");
 };
 
+const controlSettings = function (e) {
+  if (!e.target.classList.contains("settings")) return;
+  const target = e.target.parentElement;
+
+  //Hides value element and shows Input element.
+  const value = target.querySelector(".workText");
+  const valueInput = target.querySelector(".valueInput");
+  valueInput.classList.toggle("hidden");
+  value.classList.toggle("hidden");
+};
 const init = function () {
   model.defTime(SEC_WORK);
   clock.startHandler(controlClock);
   work.listenInputButton(controladdWork);
-  work.listenWorkList(controlCurrent);
-  work.listenAddPomodoro(controlPomodoroNumber);
+  work.listenList(controlCurrent);
+  work.listenList(controlPomodoroNumber);
   clockButtons.listenNext(controlNext);
   clockButtons.listenPlus(controlPlus);
   work.listenDragWork(
@@ -329,7 +352,7 @@ const init = function () {
     addWorkDraggingClass2
   );
   switcher.listenSwitcher(controlSwitchList);
-  work.listenSettings(controlSettings);
+  work.listenList(controlSettings);
 };
 init();
 

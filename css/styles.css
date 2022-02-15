@@ -259,3 +259,13 @@ body {
   margin-top: auto;
   margin-bottom: auto;
 }
+.valueInput {
+  width: 100px;
+  border: 1px solid #000;
+  border-color: black;
+}
+.pomodoroInput {
+  width: 100px;
+  border: 1px solid #000;
+  border-color: black;
+}

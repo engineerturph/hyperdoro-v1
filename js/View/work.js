@@ -17,21 +17,11 @@ class work {
       func();
     });
   }
-  listenWorkList(func) {
+  listenList(func) {
     this.list.addEventListener("mousedown", function (e) {
       func(e);
     });
-  }
-  listenAddPomodoro(func) {
-    this.list.addEventListener("mousedown", function (e) {
-      func(e);
-    });
-  }
-  listenSettings(func) {
-    this.list.addEventListener("click", function (e) {
-      func(e);
-    });
-  }
+  } //click dont work because they are draggable probably
   listenDragWork(func1, func2, func3) {
     this.list.addEventListener("dragstart", function (e) {
       const target = e.target.classList.contains("work")
@@ -57,7 +47,9 @@ class work {
             a.continue ? "current" : ""
           }" data-id=${i}><div class="workText">${
             a.value === "" ? "No explanation" : a.value
-          }</div><button class="addPomodoro">${
+          }</div><input class="valueInput hidden" type="text" name="text" placeholder="${
+            a.value === "" ? "No explanation" : a.value
+          }"/><button class="addPomodoro">${
             a.repeat
           }</button><div class='remaining'>${
             +a.curRemaining + a.othRemaining
