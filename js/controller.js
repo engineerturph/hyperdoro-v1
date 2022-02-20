@@ -37,12 +37,20 @@ const checkAndRenderRemainingTimes = function (reset = false) {
   if (model.state.counterData.type != "work") return;
   if (model.state.workData.currentWorkNum === -1) return;
   model.updateCurrentRemaining(reset);
+
+  //Updates total time left to finish
+  model.updateTotal();
+  work.renderTotal(model.state.workData.total);
   work.renderToList(model.state.workData.works);
 };
 
 //Updates and renders remaining works time calculations
 const updateandRenderWorkRemaining = function () {
   model.updateOtherRemainings();
+
+  //Updates total time left to finish
+  model.updateTotal();
+  work.renderTotal(model.state.workData.total);
   work.renderToList(model.state.workData.works);
 };
 
@@ -173,6 +181,10 @@ const controladdWork = function () {
   //Updates current ones remaining value and resets other values
   model.updateCurrentRemaining(true);
 
+  //Updates total time left to finish
+  model.updateTotal();
+  work.renderTotal(model.state.workData.total);
+
   //Renders works
   work.renderToList(model.state.workData.works);
 };
@@ -203,6 +215,10 @@ const controlCurrent = function (e) {
   //Changes current works remaining value and resets other values
   model.updateCurrentRemaining(true);
 
+  //Updates total time left to finish
+  model.updateTotal();
+  work.renderTotal(model.state.workData.total);
+
   //Re-renders works
   work.renderToList(model.state.workData.works);
 };
@@ -223,6 +239,10 @@ const controlPomodoroNumber = function (e) {
   //Calculates non-current works time and updates it
   model.updateOtherRemainings(i);
 
+  //Updates total time left to finish
+  model.updateTotal();
+  work.renderTotal(model.state.workData.total);
+
   //Re-renders works
   work.renderToList(model.state.workData.works);
 };
@@ -237,6 +257,10 @@ const controlNext = function () {
 
   //Checks remaining time
   checkAndRenderRemainingTimes();
+
+  //Updates total time left to finish
+  model.updateTotal();
+  work.renderTotal(model.state.workData.total);
   return;
 };
 const controlPlus = function () {
@@ -248,6 +272,10 @@ const controlPlus = function () {
 
   //Re-calculates remaining times
   checkAndRenderRemainingTimes();
+
+  //Updates total time left to finish
+  model.updateTotal();
+  work.renderTotal(model.state.workData.total);
 };
 
 //Marks dragging element for later usage

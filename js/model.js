@@ -1,4 +1,5 @@
 import { SEC_WORK } from "./config.js";
+import work from "./View/work.js";
 
 export const state = {
   counterData: {
@@ -16,7 +17,16 @@ export const state = {
     donePomodoros: [],
     currentWorkNum: -1,
     spentTime: 0,
+    total: 0,
   },
+};
+export const updateTotal = function () {
+  let total = 0;
+  state.workData.works.forEach((e) => {
+    total += e.curRemaining;
+    total += e.othRemaining;
+  });
+  state.workData.total = total;
 };
 
 export const updateCurrentRemaining = function (reset = false) {

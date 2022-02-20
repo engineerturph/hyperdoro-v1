@@ -269,3 +269,8 @@ body {
   border: 1px solid #000;
   border-color: black;
 }
+.totalTime {
+  width: max-content;
+  margin-left: auto;
+  margin-right: auto;
+}

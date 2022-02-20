@@ -55,7 +55,9 @@ i want to be able to report bugs and features for implement
 //ilerde donelistle todolisti beraber visible yapan bir setting ekle
 //Ilerde ayarlara workun hepsini silmeyi ve hepsini skiplemeyi (mark as completed) ekle
 //Ilerde jobu deletelemek yerine sadece otomatik timeouta gecme butonu ekle.
+//Real timer ekledikten sonra ne zaman bitecek seyini guncelle
 
 #Notes
 
 Didn't add pomodoro number modification to settings because i dont think its a good user experience because its too complicated.
+Tried to add calculation function in one place but it looks to complicated

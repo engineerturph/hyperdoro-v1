@@ -7,9 +7,12 @@ class work {
   _work;
   _data;
   workTarget;
-
+  _total = this.parentElement.querySelector(".totalTime");
   returnInputValue() {
     return this._input.value;
+  }
+  renderTotal(time) {
+    this._total.innerHTML = `${time} mins left to finish`;
   }
   listenInputButton(func) {
     this._button.addEventListener("click", function (e) {
