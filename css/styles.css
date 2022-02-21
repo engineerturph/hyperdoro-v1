@@ -107,7 +107,7 @@ body {
 .calisma {
   width: 70px;
   display: inline-flex;
-  margin-left: 46%;
+  margin-left: 35%;
   margin-top: 5px;
 }
 .counter {
@@ -273,4 +273,19 @@ body {
   width: max-content;
   margin-left: auto;
   margin-right: auto;
+}
+.information {
+  background-color: white;
+  width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.sagsol {
+  display: inline-flex;
+  width: min-content;
+  margin-left: 48%;
+}
+.clock {
+  display: inline-flex;
+  margin-left: 3%;
 }

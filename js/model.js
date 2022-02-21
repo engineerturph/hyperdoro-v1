@@ -19,6 +19,9 @@ export const state = {
     spentTime: 0,
     total: 0,
   },
+  pomodoroData: {
+    curPage: 0,
+  },
 };
 export const updateTotal = function () {
   let total = 0;
@@ -104,6 +107,7 @@ export const swapwork = function (x, y) {
   let b = state.workData.works[x];
   state.workData.works.splice(x, 1);
   state.workData.works.splice(y, 0, b);
+  state.workData.currentWorkNum = y;
 };
 export const createDoneWork = function () {
   const curWork = state.workData.works.find((e) => e.continue === true);

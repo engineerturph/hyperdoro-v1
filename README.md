@@ -61,3 +61,4 @@ i want to be able to report bugs and features for implement
 
 Didn't add pomodoro number modification to settings because i dont think its a good user experience because its too complicated.
 Tried to add calculation function in one place but it looks to complicated
+

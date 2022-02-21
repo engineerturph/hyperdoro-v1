@@ -5,9 +5,10 @@ import clock from "./View/clock.js";
 import * as model from "./model.js";
 import work from "./View/work.js";
 import clockButtons from "./View/clockButtons.js";
-import { SEC_TIMEOUT, SEC_WORK, TIMESPEED } from "./config.js";
+import { SEC_TIMEOUT, SEC_WORK, TIMESPEED, POMODORONUM } from "./config.js";
 import switcher from "./View/switchbutton.js";
 import donelist from "./View/donelist.js";
+import pomodoroInfo from "./View/pomodoroInfo.js";
 //body uzunlugu 900 genisligi 1663 4x3 bi uygulama yapcam genisligi 1200
 //ilk htmlyi yaz sonradan designi ekle
 //User stories
@@ -366,6 +367,26 @@ const controlSettings = function (e) {
   valueInput.classList.toggle("hidden");
   value.classList.toggle("hidden");
 };
+
+//Takes input from created value element
+const controlSettingsInput = function (e) {
+  if (!e.target.classList.contains("valueInput")) return;
+  model.state.workData.works[e.target.parentElement.dataset.id].value =
+    e.target.value;
+  work.renderToList(model.state.workData.works);
+};
+const controlPomodoroInfo = function (e) {
+  if (e.target.classList.contains("sol")) {
+    pomodoroInfo.exposeElement(
+      ++model.state.pomodoroData.curPage % POMODORONUM
+    );
+  } else {
+    pomodoroInfo.exposeElement(
+      ((--model.state.pomodoroData.curPage % POMODORONUM) + POMODORONUM) %
+        POMODORONUM
+    );
+  }
+};
 const init = function () {
   model.defTime(SEC_WORK);
   clock.startHandler(controlClock);
@@ -381,6 +402,8 @@ const init = function () {
   );
   switcher.listenSwitcher(controlSwitchList);
   work.listenList(controlSettings);
+  work.listenEnter(controlSettingsInput);
+  pomodoroInfo.listenInput(controlPomodoroInfo);
 };
 init();
 

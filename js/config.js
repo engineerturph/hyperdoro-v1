@@ -6,4 +6,5 @@
 export const SEC_TIMEOUT = 100;
 export const SEC_WORK = 300;
 export const TIMESPEED = 10;
+export const POMODORONUM = 4;
 //User config

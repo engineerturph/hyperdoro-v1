@@ -25,6 +25,13 @@ class work {
       func(e);
     });
   } //click dont work because they are draggable probably
+  listenEnter(func) {
+    this.list.addEventListener("keypress", function (e) {
+      if (e.key === "Enter") {
+        func(e);
+      }
+    });
+  }
   listenDragWork(func1, func2, func3) {
     this.list.addEventListener("dragstart", function (e) {
       const target = e.target.classList.contains("work")
