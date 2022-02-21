@@ -11,8 +11,14 @@ class work {
   returnInputValue() {
     return this._input.value;
   }
-  renderTotal(time) {
-    this._total.innerHTML = `${time} mins left to finish`;
+  renderTotal(time, data) {
+    const total = time + data;
+    const hour = `${Math.floor(total / 60)}`;
+    const mins = `${total % 60}`;
+    this._total.innerHTML = `ends at ${hour.padStart(2, 0)}:${mins.padStart(
+      2,
+      0
+    )}`;
   }
   listenInputButton(func) {
     this._button.addEventListener("click", function (e) {

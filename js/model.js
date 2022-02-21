@@ -22,6 +22,11 @@ export const state = {
   pomodoroData: {
     curPage: 0,
   },
+  timeData: {
+    minutes: 0,
+    hours: 12,
+    totalTime: 0,
+  },
 };
 export const updateTotal = function () {
   let total = 0;
@@ -124,4 +129,10 @@ export const createDoneWork = function () {
   }
   state.workData.donePomodoros.unshift(newDone);
   console.log(state.workData.donePomodoros);
+};
+export const getRealTime = function () {
+  const time = new Date();
+  state.timeData.hours = `${time.getHours()}`;
+  state.timeData.minutes = `${time.getMinutes()}`;
+  state.timeData.totalTime = time.getHours() * 60 + time.getMinutes();
 };

@@ -1,6 +1,5 @@
 "use strict";
 
-import startButton from "./View/startButton.js";
 import clock from "./View/clock.js";
 import * as model from "./model.js";
 import work from "./View/work.js";
@@ -9,6 +8,7 @@ import { SEC_TIMEOUT, SEC_WORK, TIMESPEED, POMODORONUM } from "./config.js";
 import switcher from "./View/switchbutton.js";
 import donelist from "./View/donelist.js";
 import pomodoroInfo from "./View/pomodoroInfo.js";
+import upperButtons from "./View/upperButtons.js";
 //body uzunlugu 900 genisligi 1663 4x3 bi uygulama yapcam genisligi 1200
 //ilk htmlyi yaz sonradan designi ekle
 //User stories
@@ -41,7 +41,7 @@ const checkAndRenderRemainingTimes = function (reset = false) {
 
   //Updates total time left to finish
   model.updateTotal();
-  work.renderTotal(model.state.workData.total);
+  work.renderTotal(model.state.workData.total, model.state.timeData.totalTime);
   work.renderToList(model.state.workData.works);
 };
 
@@ -51,7 +51,7 @@ const updateandRenderWorkRemaining = function () {
 
   //Updates total time left to finish
   model.updateTotal();
-  work.renderTotal(model.state.workData.total);
+  work.renderTotal(model.state.workData.total, model.state.timeData.totalTime);
   work.renderToList(model.state.workData.works);
 };
 
@@ -184,7 +184,7 @@ const controladdWork = function () {
 
   //Updates total time left to finish
   model.updateTotal();
-  work.renderTotal(model.state.workData.total);
+  work.renderTotal(model.state.workData.total, model.state.timeData.totalTime);
 
   //Renders works
   work.renderToList(model.state.workData.works);
@@ -218,7 +218,7 @@ const controlCurrent = function (e) {
 
   //Updates total time left to finish
   model.updateTotal();
-  work.renderTotal(model.state.workData.total);
+  work.renderTotal(model.state.workData.total, model.state.timeData.totalTime);
 
   //Re-renders works
   work.renderToList(model.state.workData.works);
@@ -242,7 +242,7 @@ const controlPomodoroNumber = function (e) {
 
   //Updates total time left to finish
   model.updateTotal();
-  work.renderTotal(model.state.workData.total);
+  work.renderTotal(model.state.workData.total, model.state.timeData.totalTime);
 
   //Re-renders works
   work.renderToList(model.state.workData.works);
@@ -261,7 +261,7 @@ const controlNext = function () {
 
   //Updates total time left to finish
   model.updateTotal();
-  work.renderTotal(model.state.workData.total);
+  work.renderTotal(model.state.workData.total, model.state.timeData.totalTime);
   return;
 };
 const controlPlus = function () {
@@ -276,7 +276,7 @@ const controlPlus = function () {
 
   //Updates total time left to finish
   model.updateTotal();
-  work.renderTotal(model.state.workData.total);
+  work.renderTotal(model.state.workData.total, model.state.timeData.totalTime);
 };
 
 //Marks dragging element for later usage
@@ -387,7 +387,19 @@ const controlPomodoroInfo = function (e) {
     );
   }
 };
+const controlMain = function (e) {
+  if (!e.target.closest(".logo")) return;
+  window.location.reload();
+};
+const realTimeUpdate = function () {
+  model.getRealTime();
+  clock.renderRealTime(model.state.timeData);
+};
+const controlTimer = function () {
+  setInterval(realTimeUpdate, TIMESPEED / 2);
+};
 const init = function () {
+  controlTimer();
   model.defTime(SEC_WORK);
   clock.startHandler(controlClock);
   work.listenInputButton(controladdWork);
@@ -404,6 +416,7 @@ const init = function () {
   work.listenList(controlSettings);
   work.listenEnter(controlSettingsInput);
   pomodoroInfo.listenInput(controlPomodoroInfo);
+  upperButtons.listenTopSide(controlMain);
 };
 init();
 
