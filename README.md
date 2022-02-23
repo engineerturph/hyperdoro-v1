@@ -1,4 +1,4 @@
-# This is a pomodoro project for lots of customization options hyperdoro.netlify.app
+# This is a pomodoro project for lots of customization options https://hyperdoro.netlify.app
 
 Only pomodoro-v1 version will be public and first version will be
 nothing more than a normal pomodoro application
