@@ -85,7 +85,7 @@ const updateWorkPomodoro = function () {
   if (model.state.workData.works.length === 0) {
     model.state.workData.currentWorkNum = -1;
   } else {
-    model.makeInputWorkContinue(0);
+    model.makeInputWorkContinue();
   }
 
   //If the works array is empty rendertolist automaticly renders ''
@@ -189,40 +189,6 @@ const controladdWork = function () {
   //Renders works
   work.renderToList(model.state.workData.works);
 };
-const controlCurrent = function (e) {
-  //If you click workhr element or hr(border line) element it returns
-  //It listens all of workList
-  if (
-    !(
-      e.target.classList.contains("workText") ||
-      e.target.classList.contains("work") ||
-      e.target.classList.contains("remaining")
-    )
-  )
-    return;
-
-  //If you click worktext it targets its parent if you click work box
-  //it targets itself(takes HTML element)
-  const workTarget = e.target.classList.contains("work")
-    ? e.target
-    : e.target.parentElement;
-
-  //Takes number of target
-  const i = workTarget.dataset.id;
-
-  //Makes target continue
-  model.makeInputWorkContinue(i);
-
-  //Changes current works remaining value and resets other values
-  model.updateCurrentRemaining(true);
-
-  //Updates total time left to finish
-  model.updateTotal();
-  work.renderTotal(model.state.workData.total, model.state.timeData.totalTime);
-
-  //Re-renders works
-  work.renderToList(model.state.workData.works);
-};
 const controlPomodoroNumber = function (e) {
   //If target isn't add pomodoro number return
   //It listens all of worklist
@@ -304,6 +270,9 @@ const addWorkDraggingClass2 = function (target) {
       model.state.workData.works.length - 1
     );
   }
+  //At the end of dragging makes first work current
+  model.makeInputWorkContinue();
+
   work.renderToList(model.state.workData.works);
 };
 //Gets element after the element we dragging
@@ -393,17 +362,17 @@ const controlMain = function (e) {
 };
 const realTimeUpdate = function () {
   model.getRealTime();
+  model.calculateHour();
   clock.renderRealTime(model.state.timeData);
 };
 const controlTimer = function () {
-  setInterval(realTimeUpdate, TIMESPEED / 2);
+  setInterval(realTimeUpdate, TIMESPEED * 30);
 };
 const init = function () {
   controlTimer();
   model.defTime(SEC_WORK);
   clock.startHandler(controlClock);
   work.listenInputButton(controladdWork);
-  work.listenList(controlCurrent);
   work.listenList(controlPomodoroNumber);
   clockButtons.listenNext(controlNext);
   clockButtons.listenPlus(controlPlus);

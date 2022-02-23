@@ -199,9 +199,6 @@ body {
 .emptyText {
   text-align: center;
 }
-.current {
-  background-color: rgb(255, 255, 255);
-}
 .addPomodoro {
   margin-left: 570px;
   height: 50%;

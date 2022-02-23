@@ -1,5 +1,4 @@
 import { SEC_WORK } from "./config.js";
-import work from "./View/work.js";
 
 export const state = {
   counterData: {
@@ -26,6 +25,7 @@ export const state = {
     minutes: 0,
     hours: 12,
     totalTime: 0,
+    endingHour: 0,
   },
 };
 export const updateTotal = function () {
@@ -71,6 +71,7 @@ export const createValue = function (value) {
     repeat: 1,
     curRemaining: SEC_WORK / 60,
     othRemaining: 0,
+    totalTime: 0,
   };
 };
 
@@ -78,8 +79,8 @@ export const makeInputWorkContinue = function (i = 0) {
   state.workData.works.forEach((a) => {
     a.continue = false;
   });
-  state.workData.works[i].continue = true;
-  state.workData.currentWorkNum = i;
+  state.workData.works[0].continue = true;
+  state.workData.currentWorkNum = 0;
 };
 
 export const addPomodoro = function (i) {
@@ -135,4 +136,13 @@ export const getRealTime = function () {
   state.timeData.hours = `${time.getHours()}`;
   state.timeData.minutes = `${time.getMinutes()}`;
   state.timeData.totalTime = time.getHours() * 60 + time.getMinutes();
+};
+export const calculateHour = function () {
+  const timeMin = state.timeData.totalTime;
+  console.log(timeMin);
+  state.workData.works.reduce(function (totalTime, curWork, i) {
+    totalTime = totalTime + curWork.curRemaining + curWork.othRemaining;
+    state.workData.works[i].totalTime = totalTime;
+    return totalTime;
+  }, timeMin);
 };
