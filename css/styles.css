@@ -101,7 +101,7 @@ body {
 }
 .nextButton {
   display: inline-flex;
-  margin-left: 37%;
+  margin-left: 35%;
   margin-top: 5px;
 }
 .calisma {
@@ -285,4 +285,8 @@ body {
 .clock {
   display: inline-flex;
   margin-left: 3%;
+}
+.minusButton1 {
+  margin-left: 2%;
+  display: inline-flex;
 }

@@ -1,4 +1,4 @@
-# This is a pomodoro project for lots of customization options
+# This is a pomodoro project for lots of customization options hyperdoro.netlify.app
 
 Only pomodoro-v1 version will be public and first version will be
 nothing more than a normal pomodoro application
@@ -16,7 +16,7 @@ i want to be able to login website(use lots of login api) and use my early data
 
 i want to start pomodoro as i want ✔️
 
-i want to able to add ✔️ and remove minutes from my pomodoro with one click
+i want to able to add ✔️ and remove minutes from my pomodoro with one click ✔️
 
 i want to be able to skip pomodoro ✔️
 
@@ -24,11 +24,11 @@ i want to be able to see my statistics
 
 i want to be able to change languages(not in flowchart use api later)
 
-i want to be able go to main site with logo
+i want to be able go to main site with logo ✔️
 
-i want different timer(real time) to see easily
+i want different timer(real time) to see easily ✔️
 
-i want to learn what is pomodoro from website
+i want to learn what is pomodoro from website ✔️
 
 i want to create tasks ✔️
 
@@ -40,7 +40,7 @@ i want to sort tasks with my mouse ✔️
 
 i want app to calculate my daily and task pomodoros,i want to see when my all pomodoros end and my task pomodoros end ✔️
 
-i want to be able to modify tasks' name pomodoro number after creation
+i want to be able to modify tasks' name pomodoro number after creation ✔️
 
 i want to clear or complete all pomodoros with one click
 
@@ -51,7 +51,6 @@ i want to be able to report bugs and features for implement
 #Personal notes
 
 //Take pomodoro datas at the end of pomodoro
-//Work suresini hesaplama mekanizmasi cok kotu onu yarin duzelt ve toplam sureyi ekle
 //ilerde donelistle todolisti beraber visible yapan bir setting ekle
 //Ilerde ayarlara workun hepsini silmeyi ve hepsini skiplemeyi (mark as completed) ekle
 //Ilerde jobu deletelemek yerine sadece otomatik timeouta gecme butonu ekle.

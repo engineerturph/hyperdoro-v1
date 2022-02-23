@@ -237,6 +237,7 @@ const controlNext = function () {
   //Calculates ending hours
   model.calculateHour();
 
+  //Calculates total ending hour
   work.renderTotal(model.state.workData.total, model.state.timeData.totalTime);
   return;
 };
@@ -256,6 +257,7 @@ const controlPlus = function () {
   //Calculates ending hours
   model.calculateHour();
 
+  //Calculates total ending hour
   work.renderTotal(model.state.workData.total, model.state.timeData.totalTime);
 };
 
@@ -290,6 +292,7 @@ const addWorkDraggingClass2 = function (target) {
   //Calculates ending hours
   model.calculateHour();
 
+  //Calculates total ending hour
   work.renderToList(model.state.workData.works);
 };
 //Gets element after the element we dragging
@@ -385,6 +388,28 @@ const realTimeUpdate = function () {
 const controlTimer = function () {
   setInterval(realTimeUpdate, TIMESPEED * 30);
 };
+const controlMinus = function () {
+  //Deletes time a minute
+  model.state.counterData.time -= 60;
+
+  //Removes delete if time is below 0
+  if (model.state.counterData.time <= 0) model.state.counterData.time = 1;
+
+  //Renders time
+  renderClockandStatus();
+
+  //Re-calculates remaining times
+  checkAndRenderRemainingTimes();
+
+  //Updates total time left to finish
+  model.updateTotal();
+
+  //Calculates ending hours
+  model.calculateHour();
+
+  //Calculates total ending hour
+  work.renderTotal(model.state.workData.total, model.state.timeData.totalTime);
+};
 const init = function () {
   controlTimer();
   model.defTime(SEC_WORK);
@@ -403,6 +428,7 @@ const init = function () {
   work.listenEnter(controlSettingsInput);
   pomodoroInfo.listenInput(controlPomodoroInfo);
   upperButtons.listenTopSide(controlMain);
+  clockButtons.listenMinus(controlMinus);
 };
 init();
 
