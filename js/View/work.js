@@ -67,9 +67,12 @@ class work {
             a.value === "" ? "No explanation" : a.value
           }"/><button class="addPomodoro">${
             a.repeat
-          }</button><div class='remaining'>${
-            +a.curRemaining + a.othRemaining
-          } mins</div><div class="settings">...</div></div><hr class="workhr"/>`
+          }</button><div class='remaining'>${`${Math.floor(
+            a.totalTime / 60
+          )}`.padStart(2, 0)}:${`${a.totalTime % 60}`.padStart(
+            2,
+            0
+          )}</div><div class="settings">...</div></div><hr class="workhr"/>`
       )
       .join("");
   }

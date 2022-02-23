@@ -139,10 +139,10 @@ export const getRealTime = function () {
 };
 export const calculateHour = function () {
   const timeMin = state.timeData.totalTime;
-  console.log(timeMin);
   state.workData.works.reduce(function (totalTime, curWork, i) {
     totalTime = totalTime + curWork.curRemaining + curWork.othRemaining;
     state.workData.works[i].totalTime = totalTime;
+    console.log(state.workData.works);
     return totalTime;
   }, timeMin);
 };

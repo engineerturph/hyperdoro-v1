@@ -186,6 +186,9 @@ const controladdWork = function () {
   model.updateTotal();
   work.renderTotal(model.state.workData.total, model.state.timeData.totalTime);
 
+  //Calculates ending hours
+  model.calculateHour();
+
   //Renders works
   work.renderToList(model.state.workData.works);
 };
@@ -210,6 +213,9 @@ const controlPomodoroNumber = function (e) {
   model.updateTotal();
   work.renderTotal(model.state.workData.total, model.state.timeData.totalTime);
 
+  //Calculates ending hours
+  model.calculateHour();
+
   //Re-renders works
   work.renderToList(model.state.workData.works);
 };
@@ -227,6 +233,10 @@ const controlNext = function () {
 
   //Updates total time left to finish
   model.updateTotal();
+
+  //Calculates ending hours
+  model.calculateHour();
+
   work.renderTotal(model.state.workData.total, model.state.timeData.totalTime);
   return;
 };
@@ -242,6 +252,10 @@ const controlPlus = function () {
 
   //Updates total time left to finish
   model.updateTotal();
+
+  //Calculates ending hours
+  model.calculateHour();
+
   work.renderTotal(model.state.workData.total, model.state.timeData.totalTime);
 };
 
@@ -272,6 +286,9 @@ const addWorkDraggingClass2 = function (target) {
   }
   //At the end of dragging makes first work current
   model.makeInputWorkContinue();
+
+  //Calculates ending hours
+  model.calculateHour();
 
   work.renderToList(model.state.workData.works);
 };
