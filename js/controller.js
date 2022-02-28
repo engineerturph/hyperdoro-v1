@@ -9,6 +9,7 @@ import switcher from "./View/switchbutton.js";
 import donelist from "./View/donelist.js";
 import pomodoroInfo from "./View/pomodoroInfo.js";
 import upperButtons from "./View/upperButtons.js";
+import login from "./View/login.js";
 //body uzunlugu 900 genisligi 1663 4x3 bi uygulama yapcam genisligi 1200
 //ilk htmlyi yaz sonradan designi ekle
 //User stories
@@ -410,6 +411,12 @@ const controlMinus = function () {
   //Calculates total ending hour
   work.renderTotal(model.state.workData.total, model.state.timeData.totalTime);
 };
+const controlLogin = function () {
+  login.showLogin();
+};
+const controlSignup = function (e) {
+  if (!e.target.classList.contains("signupButton")) return;
+};
 const init = function () {
   controlTimer();
   model.defTime(SEC_WORK);
@@ -429,6 +436,8 @@ const init = function () {
   pomodoroInfo.listenInput(controlPomodoroInfo);
   upperButtons.listenTopSide(controlMain);
   clockButtons.listenMinus(controlMinus);
+  login.listenLogin(controlLogin);
+  login.listenLoginPage(controlSignup);
 };
 init();
 

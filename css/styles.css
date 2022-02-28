@@ -290,3 +290,15 @@ body {
   margin-left: 2%;
   display: inline-flex;
 }
+.login {
+  z-index: 5;
+  position: absolute;
+  top: 100px;
+  left: 100px;
+  background-color: black;
+  width: 500px;
+  height: 500px;
+}
+.signupButton {
+  margin-left: 10px;
+}
