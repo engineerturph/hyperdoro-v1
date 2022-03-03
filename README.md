@@ -44,6 +44,8 @@ i want to be able to modify tasks' name pomodoro number after creation ✔️
 
 i want to clear or complete all pomodoros with one click
 
+i want to see privacy policy and terms of service
+
 i want to be able to modify pomodoro time,short timeout length,long timeout length,long timeout delay as pomodoro(gecikme),pomodoro auto start,if to do is empty dont start next pomodoro, oto timeout start,daily goal(default value at daily goal and indicator for people to see they can modify this)/notification voice volume,alarm voice,opening desktop notifications,opening explorer notifications,close real time timer/changing theme,changing language,changing time period,time display(2:00PM and 14:00),dont remove task from todo when done
 
 i want to be able to report bugs and features for implement
@@ -52,11 +54,12 @@ i want to be able to report bugs and features for implement
 
 //Take pomodoro datas at the end of pomodoro
 //ilerde donelistle todolisti beraber visible yapan bir setting ekle
-//Ilerde ayarlara workun hepsini silmeyi ve hepsini skiplemeyi (mark as completed) ekle
 //Ilerde jobu deletelemek yerine sadece otomatik timeouta gecme butonu ekle.
-//Toplam bitisi saat seklinde yazdim digerlerini yazmadim
+//Work bitislerinde bug var duzelt
+//completing all pomodoro -> settings -> privacy policy -> login -> reporting bugs
 
 #Notes
 
 Didn't add pomodoro number modification to settings because i dont think its a good user experience because its too complicated.
+
 Tried to add calculation function in one place but it looks to complicated
